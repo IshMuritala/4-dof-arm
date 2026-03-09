@@ -1,0 +1,9 @@
+calibration:
+  T_robot_from_cam:
+    - [0.017481, 0.229378, -0.973181, 0.722696]
+    - [0.999734, -0.018634, 0.013566, -0.004870]
+    - [-0.015022, -0.973159, -0.229642, 0.131791]
+    - [0, 0, 0, 1]
+  rms_error_m: 0.008088
+  num_points: 7
+  notes: "Calibration using pin + jaw-center TCP"

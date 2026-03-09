@@ -1,0 +1,81 @@
+%YAML:1.0
+---
+
+# Note: Updating config/robot.yaml will override those defaults, as long as loadRobotConfig() is actually called.
+# If a field is missing in the YAML, the default in robot_config.h is what gets used for that specific field.
+
+# [Note: edit 'joint_offsets_deg:' for quick offset changes]
+
+# Robot configuration for 4DOF arm
+#
+# Frame:
+#   Origin: table surface directly under base rotation axis.
+#   +X forward, +Y left, +Z up. (Right side is -Y.)
+#
+# Units:
+#   meters (m) and degrees (deg) (unless I noted otherwise)
+
+robot:
+  geometry:
+    # base_height_m measured with arm fully straight and level (shoulder=0, elbow=0, wrist=90):
+    # jaw-center height ~= 9.4 cm -> 0.094 m
+    base_height_m: 0.094
+    # joint axis to joint axis (measured center of servo horn/shaft)
+    shoulder_to_elbow_m: 0.105
+    elbow_to_wrist_m: 0.095
+    # wrist axis to jaw-center (measured with wrist forward)
+    # forward distance: 14.2 cm, vertical offset: -1.0 cm (jaw below wrist axis)
+    wrist_to_gripper_forward_m: 0.142
+    wrist_to_gripper_up_m: -0.01  # default -0.01
+
+  joint_limits_deg:
+    # Servo limits (match servo_limits.h and manual control)
+    base_min: 0
+    base_max: 180
+    shoulder_min: 0
+    shoulder_max: 180
+    elbow_min: 0
+    elbow_max: 150
+    wrist_min: 48
+    wrist_max: 115
+
+  # Joint offsets (deg) for calibration.
+  joint_offsets_deg:
+    # Offsets from "math zero" to servo reading (effective = servo + offset)
+    # Calibrated with arm straight and level:
+    # base=90, shoulder=0, elbow=0, wrist=80 -> wrist forward => offset +10
+    base: 0
+    shoulder: -10 # if z too low, make more neg
+    elbow: -14.5 # if x too long, make more neg
+    wrist: 10
+
+
+  home_pose_deg:
+    # home angles used for startup/homing (ready position is the one used in main app instead)
+    base: 90
+    shoulder: 90
+    elbow: 90
+    wrist: 90
+
+  gripper:
+    # Match Arduino servo_limits.h ()
+    open: 1000
+    closed: 4000
+    home: 2800
+
+  motion_limits:
+    # 0 means "unused for now"
+    joint_max_deg_per_s: 0
+    joint_max_deg_per_s2: 0
+    gripper_max_units_per_s: 0
+    gripper_max_units_per_s2: 0
+
+  workspace_bounds_m:
+    # Safety box in base frame (x forward, y left, z up)
+    # x_min is closest forward reach allowed, x_max is farthest reach allowed
+    x_min: 0.13
+    x_max: 0.30
+    y_min: -0.14
+    y_max: 0.14
+    z_min: 0.015
+    z_max: 0.30

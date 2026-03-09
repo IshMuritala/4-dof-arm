@@ -1,0 +1,50 @@
+%YAML:1.0
+---
+# Camera + perception settings
+
+segmentation:
+  plane_distance_threshold_m: 0.008 # default: 0.008
+  plane_max_iterations: 300
+  plane_min_inliers: 500
+  plane_min_inlier_ratio: 0.05
+  plane_verbose: false
+
+  plane_use_axis_constraint: false
+  # Plane normal in CAMERA frame (used only if plane_use_axis_constraint is true)
+  plane_axis: [0.0, 1.0, 0.0]
+  plane_eps_angle_deg: 15.0
+
+clustering:
+  cluster_tolerance_m: 0.010 # 0.010  # if objects that are close start to be treated as one cluster, lower this setting a bit
+  cluster_min_size: 200 # Default: 100
+  cluster_max_size: 25000
+  cluster_voxel_leaf_m: 0.003 # Default: 0.003 | set to 0.0 for full cluster res (Lags a lot) | (0.004 for better FPS)
+  cluster_merge_distance_m: 0.00 # Used to be 0.05
+  cluster_min_bbox_size_m: 0.02
+  cluster_verbose: false
+
+scene_summary:
+  debug: false
+  log_path: logs/scene_summary.log
+  jsonl_path: logs/scene_summary.jsonl
+  annotated_dir: logs/annotated
+  include_new_in_log: true
+  include_lost_in_log: true
+  print_to_console: false
+  print_interval_sec: 2.0
+
+
+width_estimation:
+  # Percentile bounds used to estimate object width from cluster points.
+  width_percentile_lo: 0.15
+  width_percentile_hi: 0.85
+
+  # Radius used to rebuild a higher-res cluster for width estimation.
+  # If radius_use_percentile is true, radius is p{radius_percentile_hi} * radius_inflation
+  radius_use_percentile: true
+  radius_percentile_hi: 0.95
+  radius_inflation: 1.00  # default: 1.10
+  radius_min_m: 0.02  # default: 0.03
+
+  # Fallback fixed radius (used when percentile is disabled or invalid)
+  radius_fixed_m: 0.05

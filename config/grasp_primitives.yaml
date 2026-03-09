@@ -1,0 +1,40 @@
+%YAML:1.0
+---
+
+# Grasp primitives configuration.
+# Values are in meters (m) and degrees (deg) (unless I made a note otherwise)
+
+primitives:
+  pinch_48d:
+    # Wrist angle used for this primitive.
+    wrist_deg: 48.0
+
+    # Offsets relative to the jaw-center target point.
+    # approach_offset_z_m: start above the target for a safer approach
+    # lift_offset_z_m: how high to lift after closing the gripper
+    approach_offset_z_m: 0.06
+    lift_offset_z_m: 0.08  # default: 0.08
+
+    # Preferred elbow solution (true = elbow servo >= 90 deg)
+    prefer_elbow_down: 1
+
+    # Reject plan if approach/target/lift are outside workspace bounds
+    enforce_workspace: 1
+
+    # Gripper positions (raw units, 0-4095)
+    gripper_open: 1000
+    gripper_closed: 4000
+
+    # Dynamic gripper sizing (object width -> jaw gap -> servo position).
+    # Units: mm for gaps.
+    gripper_dynamic: 1
+    gripper_margin_mm: -10.0  #default: 2.0 - lowing tightens grip |
+    gripper_min_gap_mm: 6.0
+    gripper_max_gap_mm: 78.0
+    gripper_gap_open_mm: 78.0
+    gripper_gap_closed_mm: 6.0
+    gripper_pos_open: 1
+    gripper_pos_closed: 3700
+
+
+

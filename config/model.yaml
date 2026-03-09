@@ -1,0 +1,23 @@
+%YAML:1.0
+---
+# GPT model selection and parameters
+
+selection:
+  chosen_model: gpt-5.2-2025-12-11
+  last_reviewed: 2026-02-09
+  rationale: "Use the GPT-5.2 snapshot for consistent behavior during evals."
+
+request:
+  # Note: GPT-5.2 rejects temperature/top_p for now; kept for reference
+  temperature: 0.2
+  max_output_tokens: 256
+  reasoning_effort: medium
+  timeout_ms: 20000
+
+vision:
+  detail: high
+  annotated_snapshot_required: true
+
+output:
+  json_only: true
+  allow_null_target_on_confirm: true
