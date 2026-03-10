@@ -7,7 +7,7 @@ The IK solver then converts the object's 3D position into joint angles, which ar
 the Arduino and executed by the servos via a PCA9685 PWM driver for the joint servos and a Serial Bus Servo 
 Driver Board for the gripper servo.
 
-## Hardware
+### Hardware
 - Orbbec Gemini 2 RGB‑D camera
 - Arduino Mega
 - PCA9685 PWM driver
